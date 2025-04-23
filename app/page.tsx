@@ -20,6 +20,10 @@ export default function Home() {
 
   const weekData = schema[selectedWeek] || [];
 
+  if (!schema || Object.keys(schema).length === 0) {
+    return <div className="p-4">Laden...</div>;
+  }
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Voedingsschema Dashboard</h1>
