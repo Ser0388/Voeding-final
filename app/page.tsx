@@ -18,6 +18,8 @@ export default function Home() {
       });
   }, []);
 
+  const weekData = schema[selectedWeek] || [];
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Voedingsschema Dashboard</h1>
@@ -29,7 +31,7 @@ export default function Home() {
         </TabsList>
         {Object.keys(schema).map((week) => (
           <TabsContent key={week} value={week}>
-            {schema[week]?.map((dag: any) => (
+            {schema[week]?.map((dag) => (
               <Card key={dag.dag} className="mb-4">
                 <CardContent>
                   <h2 className="text-xl font-semibold mb-2">{dag.dag}</h2>
@@ -45,7 +47,7 @@ export default function Home() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {dag.maaltijden.map((m: any, i: number) => (
+                      {dag.maaltijden.map((m, i) => (
                         <TableRow key={i}>
                           <TableCell>{m.type}</TableCell>
                           <TableCell>{m.gerecht}</TableCell>
