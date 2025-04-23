@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 
 export default function Home() {
-  const [schema, setSchema] = useState<any>({});
+  const [schema, setSchema] = useState({});
   const [selectedWeek, setSelectedWeek] = useState("Week 1");
 
   useEffect(() => {
@@ -17,10 +17,6 @@ export default function Home() {
         setSelectedWeek(Object.keys(data)[0]);
       });
   }, []);
-
-  if (!schema || Object.keys(schema).length === 0) {
-    return <div className="p-4">Laden... (controleer of voedingsschema.json beschikbaar is)</div>;
-  }
 
   const weekData = schema[selectedWeek] || [];
 
@@ -35,7 +31,7 @@ export default function Home() {
         </TabsList>
         {Object.keys(schema).map((week) => (
           <TabsContent key={week} value={week}>
-            {schema[week]?.map((dag: any) => (
+            {schema[week]?.map((dag) => (
               <Card key={dag.dag} className="mb-4">
                 <CardContent>
                   <h2 className="text-xl font-semibold mb-2">{dag.dag}</h2>
@@ -51,7 +47,7 @@ export default function Home() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {dag.maaltijden.map((m: any, i: number) => (
+                      {dag.maaltijden.map((m, i) => (
                         <TableRow key={i}>
                           <TableCell>{m.type}</TableCell>
                           <TableCell>{m.gerecht}</TableCell>
